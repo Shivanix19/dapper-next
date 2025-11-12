@@ -11,12 +11,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Check } from "lucide-react";
+import { Check, CreditCard, Smartphone } from "lucide-react";
+
+type PaymentMethod = "card" | "upi" | "";
 
 const Checkout = () => {
   const { cart, getCartTotal, clearCart } = useCart();
   const navigate = useNavigate();
   const [showSuccess, setShowSuccess] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,6 +30,7 @@ const Checkout = () => {
     cardNumber: "",
     expiryDate: "",
     cvv: "",
+    upiId: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +123,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="zipCode">ZIP Code</Label>
+                    <Label htmlFor="zipCode">PIN Code</Label>
                     <Input
                       id="zipCode"
                       name="zipCode"
@@ -131,51 +135,112 @@ const Checkout = () => {
                 </div>
               </div>
 
-              {/* Payment Information */}
+              {/* Payment Method Selection */}
               <div className="border border-border p-6">
                 <h2 className="text-xl font-semibold text-foreground mb-6">
-                  Payment Information
+                  Payment Method
                 </h2>
-                <div className="space-y-4">
-                  <div>
-                    <Label htmlFor="cardNumber">Card Number</Label>
-                    <Input
-                      id="cardNumber"
-                      name="cardNumber"
-                      placeholder="1234 5678 9012 3456"
-                      value={formData.cardNumber}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="expiryDate">Expiry Date</Label>
-                      <Input
-                        id="expiryDate"
-                        name="expiryDate"
-                        placeholder="MM/YY"
-                        value={formData.expiryDate}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="cvv">CVV</Label>
-                      <Input
-                        id="cvv"
-                        name="cvv"
-                        placeholder="123"
-                        value={formData.cvv}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                  </div>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("card")}
+                    className={`border-2 p-4 flex flex-col items-center justify-center gap-2 transition-all ${
+                      paymentMethod === "card"
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50"
+                    }`}
+                  >
+                    <CreditCard className="h-8 w-8 text-foreground" />
+                    <span className="font-medium text-foreground">Card Payment</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("upi")}
+                    className={`border-2 p-4 flex flex-col items-center justify-center gap-2 transition-all ${
+                      paymentMethod === "upi"
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:border-primary/50"
+                    }`}
+                  >
+                    <Smartphone className="h-8 w-8 text-foreground" />
+                    <span className="font-medium text-foreground">UPI Payment</span>
+                  </button>
                 </div>
+
+                {/* Card Payment Fields */}
+                {paymentMethod === "card" && (
+                  <div className="space-y-4 animate-in fade-in duration-300">
+                    <div>
+                      <Label htmlFor="cardNumber">Card Number</Label>
+                      <Input
+                        id="cardNumber"
+                        name="cardNumber"
+                        placeholder="1234 5678 9012 3456"
+                        value={formData.cardNumber}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="expiryDate">Expiry Date</Label>
+                        <Input
+                          id="expiryDate"
+                          name="expiryDate"
+                          placeholder="MM/YY"
+                          value={formData.expiryDate}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="cvv">CVV</Label>
+                        <Input
+                          id="cvv"
+                          name="cvv"
+                          placeholder="123"
+                          value={formData.cvv}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* UPI Payment Fields */}
+                {paymentMethod === "upi" && (
+                  <div className="space-y-4 animate-in fade-in duration-300">
+                    <div>
+                      <Label htmlFor="upiId">UPI ID</Label>
+                      <Input
+                        id="upiId"
+                        name="upiId"
+                        placeholder="yourname@upi"
+                        value={formData.upiId}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Enter your UPI ID to complete the payment. You'll receive a payment request on your UPI app.
+                    </p>
+                  </div>
+                )}
+
+                {!paymentMethod && (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Please select a payment method to continue
+                  </p>
+                )}
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              <Button 
+                type="submit" 
+                className="w-full" 
+                size="lg"
+                disabled={!paymentMethod}
+              >
                 Place Order
               </Button>
             </form>
@@ -198,7 +263,7 @@ const Checkout = () => {
                       {item.name} ({item.selectedSize}) x {item.quantity}
                     </span>
                     <span className="text-foreground font-medium">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toLocaleString('en-IN')}
                     </span>
                   </div>
                 ))}
@@ -206,7 +271,7 @@ const Checkout = () => {
                 <div className="border-t border-border pt-3 flex justify-between">
                   <span className="font-semibold text-foreground">Total</span>
                   <span className="font-bold text-foreground text-lg">
-                    ${getCartTotal().toFixed(2)}
+                    ₹{getCartTotal().toLocaleString('en-IN')}
                   </span>
                 </div>
               </div>

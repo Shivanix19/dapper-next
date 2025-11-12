@@ -4,7 +4,8 @@ import { AllProducts } from "@/data/AllProducts";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/hooks/use-toast";
-import { Check } from "lucide-react";
+import { Check, Package, Truck, RefreshCw } from "lucide-react";
+import ProductCard from "@/components/ProductCard";
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -20,6 +21,11 @@ const ProductDetail = () => {
       </div>
     );
   }
+
+  // Get related products from the same category
+  const relatedProducts = AllProducts.filter(
+    (p) => p.category === product.category && p.id !== product.id
+  ).slice(0, 4);
 
   const handleAddToCart = () => {
     if (!selectedSize) {
@@ -56,7 +62,7 @@ const ProductDetail = () => {
               {product.name}
             </h1>
             <p className="text-3xl font-semibold text-foreground mb-6">
-              ${product.price.toFixed(2)}
+              ₹{product.price.toLocaleString('en-IN')}
             </p>
             <p className="text-muted-foreground mb-8">{product.description}</p>
 
@@ -94,21 +100,86 @@ const ProductDetail = () => {
               Add to Cart
             </Button>
 
+            {/* Product Features */}
+            <div className="grid grid-cols-3 gap-4 mb-8 py-6 border-y border-border">
+              <div className="flex flex-col items-center text-center">
+                <Package className="h-6 w-6 text-foreground mb-2" />
+                <p className="text-xs text-muted-foreground">Free Shipping</p>
+                <p className="text-xs text-muted-foreground">on orders above ₹2000</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <Truck className="h-6 w-6 text-foreground mb-2" />
+                <p className="text-xs text-muted-foreground">Fast Delivery</p>
+                <p className="text-xs text-muted-foreground">2-5 business days</p>
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <RefreshCw className="h-6 w-6 text-foreground mb-2" />
+                <p className="text-xs text-muted-foreground">Easy Returns</p>
+                <p className="text-xs text-muted-foreground">30-day return policy</p>
+              </div>
+            </div>
+
             {/* Product Details */}
-            <div className="border-t border-border pt-8 space-y-4">
+            <div className="space-y-6">
               <div>
-                <h4 className="text-sm font-medium text-foreground mb-2">
-                  Product Details
+                <h4 className="text-sm font-medium text-foreground mb-3">
+                  Product Information
                 </h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>Category: {product.category}</li>
-                  <li>Available Sizes: {product.sizes.join(", ")}</li>
-                  <li>Status: {product.inStock ? "In Stock" : "Out of Stock"}</li>
+                <ul className="text-sm text-muted-foreground space-y-2">
+                  <li className="flex justify-between border-b border-border pb-2">
+                    <span>Category:</span>
+                    <span className="font-medium text-foreground capitalize">{product.category}</span>
+                  </li>
+                  {product.material && (
+                    <li className="flex justify-between border-b border-border pb-2">
+                      <span>Material:</span>
+                      <span className="font-medium text-foreground">{product.material}</span>
+                    </li>
+                  )}
+                  {product.fit && (
+                    <li className="flex justify-between border-b border-border pb-2">
+                      <span>Fit:</span>
+                      <span className="font-medium text-foreground">{product.fit}</span>
+                    </li>
+                  )}
+                  <li className="flex justify-between border-b border-border pb-2">
+                    <span>Available Sizes:</span>
+                    <span className="font-medium text-foreground">{product.sizes.join(", ")}</span>
+                  </li>
+                  <li className="flex justify-between border-b border-border pb-2">
+                    <span>Status:</span>
+                    <span className={`font-medium ${product.inStock ? 'text-green-600' : 'text-red-600'}`}>
+                      {product.inStock ? "In Stock" : "Out of Stock"}
+                    </span>
+                  </li>
                 </ul>
               </div>
+
+              {product.care && (
+                <div>
+                  <h4 className="text-sm font-medium text-foreground mb-3">
+                    Care Instructions
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{product.care}</p>
+                </div>
+              )}
             </div>
           </div>
         </div>
+
+        {/* Related Products */}
+        {relatedProducts.length > 0 && (
+          <section className="mt-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8">
+              You May Also Like
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {relatedProducts.map((relatedProduct) => (
+                <ProductCard key={relatedProduct.id} product={relatedProduct} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
