@@ -43,6 +43,8 @@ const Checkout = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowSuccess(true);
+    clearCart();
+    localStorage.removeItem('cart');
   };
 
   const handleSuccessClose = () => {

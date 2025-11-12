@@ -11,6 +11,7 @@ const ProductDetail = () => {
   const { slug } = useParams();
   const product = AllProducts.find((p) => p.slug === slug);
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [quantity, setQuantity] = useState<number>(1);
   const { addToCart } = useCart();
   const { toast } = useToast();
 
@@ -36,11 +37,30 @@ const ProductDetail = () => {
       return;
     }
 
-    addToCart(product, selectedSize);
+    for (let i = 0; i < quantity; i++) {
+      addToCart(product, selectedSize);
+    }
+    
     toast({
       title: "Added to cart",
-      description: `${product.name} (${selectedSize}) added to your cart`,
+      description: `${product.name} (${selectedSize}) x${quantity} added to your cart`,
     });
+  };
+
+  const handleCheckout = () => {
+    if (!selectedSize) {
+      toast({
+        title: "Please select a size",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    for (let i = 0; i < quantity; i++) {
+      addToCart(product, selectedSize);
+    }
+    
+    window.location.href = '/checkout';
   };
 
   return (
@@ -67,7 +87,7 @@ const ProductDetail = () => {
             <p className="text-muted-foreground mb-8">{product.description}</p>
 
             {/* Size Selection */}
-            <div className="mb-8">
+            <div className="mb-6">
               <h3 className="text-sm font-medium text-foreground mb-4">
                 Select Size
               </h3>
@@ -91,13 +111,39 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Add to Cart Button */}
+            {/* Quantity Selection */}
+            {selectedSize && (
+              <div className="mb-8">
+                <h3 className="text-sm font-medium text-foreground mb-4">
+                  Quantity
+                </h3>
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="border border-border px-4 py-2 text-foreground hover:bg-muted transition-colors"
+                  >
+                    -
+                  </button>
+                  <span className="text-lg font-medium text-foreground min-w-[3rem] text-center">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="border border-border px-4 py-2 text-foreground hover:bg-muted transition-colors"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Action Button */}
             <Button
-              onClick={handleAddToCart}
+              onClick={selectedSize ? handleCheckout : handleAddToCart}
               className="w-full mb-4"
               size="lg"
             >
-              Add to Cart
+              {selectedSize ? "Checkout" : "Add to Cart"}
             </Button>
 
             {/* Product Features */}

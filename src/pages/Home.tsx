@@ -27,7 +27,7 @@ const Home = () => {
         </div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 tracking-tight">
-            LUXE MENSWEAR
+            AETHER CO
           </h1>
           <p className="text-xl text-white/90 mb-8">
             Elevate Your Style with Premium Essentials
