@@ -5,6 +5,7 @@ import { TrouserData } from "@/data/TrouserData";
 import { ShoeData } from "@/data/ShoeData";
 import { JeanData } from "@/data/JeanData";
 import { BlazerData } from "@/data/BlazerData";
+import { WinterData } from "@/data/WinterData";
 import ProductCard from "@/components/ProductCard";
 
 const CategoryPage = () => {
@@ -24,6 +25,8 @@ const CategoryPage = () => {
         return JeanData;
       case "blazers":
         return BlazerData;
+      case "winter":
+        return WinterData;
       default:
         return [];
     }
@@ -46,6 +49,8 @@ const CategoryPage = () => {
         return "Classic denim crafted for the modern man";
       case "blazers":
         return "Power dressing at its finest";
+      case "winter":
+        return "Embrace the cold with premium winter essentials";
       default:
         return "Elevate your style";
     }

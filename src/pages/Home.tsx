@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import heroBanner from "@/assets/hero-banner.jpg";
 import promoShirts from "@/assets/promo-shirts.jpg";
 import promoNewArrivals from "@/assets/promo-new-arrivals.jpg";
+import promoWinter from "@/assets/promo-winter.jpg";
 
 const Home = () => {
   const categories = [
@@ -13,6 +14,7 @@ const Home = () => {
     { name: "Shoes", path: "/shoes", count: 4 },
     { name: "Jeans", path: "/jeans", count: 4 },
     { name: "Blazers", path: "/blazers", count: 4 },
+    { name: "Winter", path: "/winter", count: 4 },
   ];
 
   return (
@@ -64,7 +66,27 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Promotional Banner 1 */}
+      {/* Promotional Banner 1 - Winter */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Link to="/winter" className="block relative h-64 md:h-96 overflow-hidden group">
+          <img 
+            src={promoWinter} 
+            alt="Winter Collection - Premium Coats and Jackets" 
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div className="text-center text-white">
+              <h3 className="text-3xl md:text-5xl font-bold mb-2">Winter Collection</h3>
+              <p className="text-lg md:text-xl mb-4">Embrace the Cold in Style</p>
+              <span className="inline-block bg-white text-black px-6 py-2 text-sm font-medium hover:bg-white/90 transition-colors">
+                Shop Winter
+              </span>
+            </div>
+          </div>
+        </Link>
+      </section>
+
+      {/* Promotional Banner 2 - Shirts */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Link to="/shirts" className="block relative h-64 md:h-96 overflow-hidden group">
           <img 
@@ -93,7 +115,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Promotional Banner 2 */}
+      {/* Promotional Banner 3 - New Arrivals */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="relative h-64 md:h-96 overflow-hidden group">
           <img 
