@@ -1,0 +1,48 @@
+import { Product } from "./ShirtData";
+
+export const JeanData: Product[] = [
+  {
+    id: 501,
+    name: "Dark Wash Slim Fit Jeans",
+    slug: "dark-wash-slim-fit-jeans",
+    price: 89.99,
+    description: "Classic dark wash jeans with a modern slim fit. Premium denim with excellent shape retention.",
+    category: "jeans",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+  {
+    id: 502,
+    name: "Light Blue Regular Jeans",
+    slug: "light-blue-regular-jeans",
+    price: 79.99,
+    description: "Comfortable light blue jeans with a regular fit. Versatile denim for casual everyday wear.",
+    category: "jeans",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+  {
+    id: 503,
+    name: "Black Skinny Jeans",
+    slug: "black-skinny-jeans",
+    price: 94.99,
+    description: "Modern black skinny jeans with stretch comfort. Contemporary style with a sleek silhouette.",
+    category: "jeans",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38"],
+    inStock: true,
+  },
+  {
+    id: 504,
+    name: "Distressed Denim Jeans",
+    slug: "distressed-denim-jeans",
+    price: 99.99,
+    description: "Trendy distressed jeans with authentic vintage look. Quality denim with carefully crafted details.",
+    category: "jeans",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+];

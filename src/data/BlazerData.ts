@@ -1,0 +1,48 @@
+import { Product } from "./ShirtData";
+
+export const BlazerData: Product[] = [
+  {
+    id: 601,
+    name: "Navy Wool Blazer",
+    slug: "navy-wool-blazer",
+    price: 299.99,
+    description: "Sophisticated navy wool blazer with classic tailoring. Perfect for business and formal occasions.",
+    category: "blazers",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+  {
+    id: 602,
+    name: "Charcoal Grey Blazer",
+    slug: "charcoal-grey-blazer",
+    price: 279.99,
+    description: "Versatile charcoal grey blazer with modern fit. Essential piece for professional wardrobes.",
+    category: "blazers",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+  {
+    id: 603,
+    name: "Black Formal Blazer",
+    slug: "black-formal-blazer",
+    price: 319.99,
+    description: "Premium black blazer with impeccable construction. Timeless elegance for special occasions.",
+    category: "blazers",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+  },
+  {
+    id: 604,
+    name: "Light Grey Casual Blazer",
+    slug: "light-grey-casual-blazer",
+    price: 259.99,
+    description: "Relaxed light grey blazer perfect for smart-casual settings. Unstructured design for comfortable wear.",
+    category: "blazers",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+];

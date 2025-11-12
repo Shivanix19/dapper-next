@@ -1,0 +1,48 @@
+import { Product } from "./ShirtData";
+
+export const ShoeData: Product[] = [
+  {
+    id: 401,
+    name: "Black Leather Oxfords",
+    slug: "black-leather-oxfords",
+    price: 149.99,
+    description: "Classic black leather Oxford shoes. Handcrafted with premium leather for lasting quality.",
+    category: "shoes",
+    images: ["/placeholder.svg"],
+    sizes: ["7", "8", "9", "10", "11", "12"],
+    inStock: true,
+  },
+  {
+    id: 402,
+    name: "Brown Suede Loafers",
+    slug: "brown-suede-loafers",
+    price: 129.99,
+    description: "Sophisticated brown suede loafers. Perfect blend of comfort and style for smart-casual occasions.",
+    category: "shoes",
+    images: ["/placeholder.svg"],
+    sizes: ["7", "8", "9", "10", "11", "12"],
+    inStock: true,
+  },
+  {
+    id: 403,
+    name: "White Leather Sneakers",
+    slug: "white-leather-sneakers",
+    price: 109.99,
+    description: "Minimalist white leather sneakers with timeless design. Versatile footwear for everyday wear.",
+    category: "shoes",
+    images: ["/placeholder.svg"],
+    sizes: ["7", "8", "9", "10", "11", "12"],
+    inStock: true,
+  },
+  {
+    id: 404,
+    name: "Navy Canvas Sneakers",
+    slug: "navy-canvas-sneakers",
+    price: 79.99,
+    description: "Casual navy canvas sneakers with rubber sole. Comfortable and stylish for relaxed occasions.",
+    category: "shoes",
+    images: ["/placeholder.svg"],
+    sizes: ["7", "8", "9", "10", "11"],
+    inStock: true,
+  },
+];

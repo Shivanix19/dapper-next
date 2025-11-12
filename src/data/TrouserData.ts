@@ -1,0 +1,48 @@
+import { Product } from "./ShirtData";
+
+export const TrouserData: Product[] = [
+  {
+    id: 301,
+    name: "Charcoal Dress Trousers",
+    slug: "charcoal-dress-trousers",
+    price: 89.99,
+    description: "Professional charcoal dress trousers with a tailored fit. Perfect for office and formal occasions.",
+    category: "trousers",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+  {
+    id: 302,
+    name: "Navy Chino Trousers",
+    slug: "navy-chino-trousers",
+    price: 69.99,
+    description: "Classic navy chinos with a modern slim fit. Versatile for both casual and smart-casual wear.",
+    category: "trousers",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+  {
+    id: 303,
+    name: "Beige Casual Trousers",
+    slug: "beige-casual-trousers",
+    price: 74.99,
+    description: "Comfortable beige trousers with a relaxed fit. Ideal for weekend and casual settings.",
+    category: "trousers",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38"],
+    inStock: true,
+  },
+  {
+    id: 304,
+    name: "Black Formal Trousers",
+    slug: "black-formal-trousers",
+    price: 94.99,
+    description: "Premium black formal trousers with impeccable tailoring. Essential for business wardrobes.",
+    category: "trousers",
+    images: ["/placeholder.svg"],
+    sizes: ["30", "32", "34", "36", "38", "40"],
+    inStock: true,
+  },
+];

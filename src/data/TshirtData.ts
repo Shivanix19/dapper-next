@@ -1,0 +1,48 @@
+import { Product } from "./ShirtData";
+
+export const TshirtData: Product[] = [
+  {
+    id: 201,
+    name: "Essential Black T-Shirt",
+    slug: "essential-black-tshirt",
+    price: 29.99,
+    description: "Premium cotton black t-shirt with a perfect fit. Wardrobe essential for everyday wear.",
+    category: "tshirts",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+  {
+    id: 202,
+    name: "White V-Neck T-Shirt",
+    slug: "white-vneck-tshirt",
+    price: 24.99,
+    description: "Classic white v-neck t-shirt made from soft, breathable cotton. Perfect layering piece.",
+    category: "tshirts",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+  {
+    id: 203,
+    name: "Grey Crew Neck T-Shirt",
+    slug: "grey-crew-neck-tshirt",
+    price: 27.99,
+    description: "Versatile grey crew neck t-shirt with a modern fit. Essential addition to any wardrobe.",
+    category: "tshirts",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL"],
+    inStock: true,
+  },
+  {
+    id: 204,
+    name: "Navy Pocket T-Shirt",
+    slug: "navy-pocket-tshirt",
+    price: 32.99,
+    description: "Stylish navy t-shirt with chest pocket detail. Premium quality fabric with a relaxed fit.",
+    category: "tshirts",
+    images: ["/placeholder.svg"],
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    inStock: true,
+  },
+];
